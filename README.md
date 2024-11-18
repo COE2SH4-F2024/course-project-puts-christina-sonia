@@ -5,11 +5,11 @@ Course Project
 You must watch the briefing video and read through the manual to engage in the development activities.
 
 
-Section: L06
+Section: L06 / L08
 
 Team Information
 Member 1 MacID: Christina Bridges
 Member 1 StudentID: 400528855
 
-Member 2 MacID: [Insert your macID here]
-Member 2 StudentID: [Insert your numerical student ID here]
+Member 2 MacID: [pareks5]
+Member 2 StudentID: [400521835]
