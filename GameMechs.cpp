@@ -8,8 +8,8 @@ GameMechs::GameMechs()
     loseFlag = false;
     score = 0;
 
-    boardSizeX = 30;
-    boardSizeY = 15;
+    boardSizeX = 20;
+    boardSizeY = 10;
 }
 
 GameMechs::GameMechs(int boardX, int boardY)
@@ -38,13 +38,18 @@ bool GameMechs::getLoseFlagStatus() const
 {
     return loseFlag;
 }
-    
 
-char GameMechs::getInput() 
+void GameMechs :: collectAsyncInput()
 {
     if (MacUILib_hasChar()){
         input = MacUILib_getChar();
     }
+
+    if(input == ' ') exitFlag = true;
+}
+
+char GameMechs::getInput() const
+{
     return input;
 }
 
@@ -91,3 +96,31 @@ void GameMechs::clearInput()
 }
 
 // More methods should be added here
+GameMechs::GameMechs(const GameMechs &other){
+
+    input = other.input;
+    exitFlag = other.exitFlag;
+    loseFlag = other.loseFlag;
+    score = other.score;
+
+    boardSizeX = other.boardSizeX;
+    boardSizeY = other.boardSizeY;
+
+
+}
+
+GameMechs& GameMechs :: operator= (const GameMechs &other){
+
+    if (this != &other){
+        input = other.input;
+        exitFlag = other.exitFlag;
+        loseFlag = other.loseFlag;
+        score = other.score;
+
+        boardSizeX = other.boardSizeX;
+        boardSizeY = other.boardSizeY;
+
+    }
+
+    return *this;
+}

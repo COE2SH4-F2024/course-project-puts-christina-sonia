@@ -20,7 +20,7 @@ class GameMechs
         int boardSizeX;
         int boardSizeY;
 
-        objPos food;
+        //objPos food;
 
     public:
         GameMechs();
@@ -32,7 +32,7 @@ class GameMechs
         bool getLoseFlagStatus() const;
         void setLoseFlag();
 
-        char getInput();
+        char getInput() const;
         void setInput(char this_input);
         void clearInput();
 
@@ -43,6 +43,10 @@ class GameMechs
         void incrementScore();
         
         // More methods should be added here
+
+        GameMechs(const GameMechs &other); //copy constructor
+        GameMechs& operator= (const GameMechs &other); //copy assignment
+        void collectAsyncInput();
 };
 
 #endif
