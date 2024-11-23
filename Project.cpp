@@ -9,8 +9,12 @@ using namespace std;
 
 #define DELAY_CONST 100000
 
+
 Player *myPlayer; 
 GameMechs *myGM;
+
+int boardX;
+int boardY; //ensure this is allowed
 
 //class objPos player; // we added this
 
@@ -54,6 +58,9 @@ void Initialize(void)
     myGM = new GameMechs();
     myPlayer = new Player(myGM);
 
+    boardX = myGM->getBoardSizeX();
+    boardY = myGM->getBoardSizeY();
+
 }
 
 void GetInput(void)
@@ -81,30 +88,29 @@ void RunLogic(void)
 
     myGM->incrementScore();
     myGM->clearInput();
+
+    myPlayer->movePlayer();
+    
 }
 
 void DrawScreen(void)
 {
     MacUILib_clearScreen();
 
-    /*int i, j;    
-    for (i = 0; i < ROWS; i++){
-        for (j = 0; j < COLUMNS; j++){ 
-            if (j == 0 || j == (COLUMNS - 1) || i == 0 || i == (ROWS - 1)){ //print the '#' symbol when i = 0 or i = 9 and j = 0 or j = 19 to establish the static frame
-                cout << "#";
+    for (int i = 0; i < boardY; i++){
+        for (int j = 0; j < boardX; j++){  //COLUMNS = 20
+            if (j == 0 || j == (boardX - 1) || i == 0 || i == (boardY - 1)){ //print the '#' symbol when i = 0 or i = 9 and j = 0 or j = 19 to establish the static frame
+                MacUILib_printf("%c", '#');
             }
-            else if (i % 4 == 0 && j % 4 == 0){
-                cout << "f";
-            }
-            else if (player.pos->x == j && player.pos->y == i){
-                cout << player.symbol;
+            else if (myPlayer->getPlayerPos().pos->x == j && myPlayer->getPlayerPos().pos->y == i){
+                MacUILib_printf("%c", myPlayer->getPlayerPos().symbol); //from myPlayer pointer object, invoke getPlayerPos() member function and retrieve symbol
             }            
             else{
-                cout << " ";
+                MacUILib_printf(" ");
             }
         }
-        cout << "\n";
-    }*/
+        MacUILib_printf("\n");
+    }
 }
 
 void LoopDelay(void)
