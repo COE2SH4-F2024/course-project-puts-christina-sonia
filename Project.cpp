@@ -87,14 +87,27 @@ void DrawScreen(void)
 {
     MacUILib_clearScreen();
 
+    objPosArrayList* playerPos = myPlayer->getPlayerPos();
+    int playerSize = playerPos->getSize();
+
     for (int i = 0; i < boardY; i++){
         for (int j = 0; j < boardX; j++){  //COLUMNS = 20
+            for (int k = 0; k < playerSize; k++)
+            {
+                objPos thisSeg = playerPos->getElement(k);
+
+                //iter 3: check if current segment at y position matches the (j,i) coordinates
+                //if yes, print the symbol
+                //need to skip if else lock below if have printed something in the for loop
+            }
+            //continue
+            
             if (j == 0 || j == (boardX - 1) || i == 0 || i == (boardY - 1)){ //print the '#' symbol when i = 0 or i = 9 and j = 0 or j = 19 to establish the static frame
                 MacUILib_printf("%c", '#');
             }
-            else if (myPlayer->getPlayerPos().pos->x == j && myPlayer->getPlayerPos().pos->y == i){
-                MacUILib_printf("%c", myPlayer->getPlayerPos().symbol); //from myPlayer pointer object, invoke getPlayerPos() member function and retrieve symbol
-            } 
+            // else if (playerPos.pos->x == j && myPlayer->getPlayerPos().pos->y == i){
+            //     MacUILib_printf("%c", myPlayer->getPlayerPos().symbol); //from myPlayer pointer object, invoke getPlayerPos() member function and retrieve symbol
+            // } 
             else if (myFood->getFoodPos().pos->x == j && myFood->getFoodPos().pos->y == i){
                 MacUILib_printf("%c", myFood->getFoodPos().symbol);
             }           

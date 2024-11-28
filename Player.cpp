@@ -4,19 +4,22 @@ Player::Player(GameMechs* thisGMRef)
 {
     mainGameMechsRef = thisGMRef;
     myDir = STOP;
+    playerPosList = new objPosArrayList();
 
-    playerPos.pos = new Pos;
+    objPos headPos(thisGMRef->getBoardSizeX() / 2, thisGMRef->getBoardSizeY() / 2, '@');
 
     // more actions to be included
-    playerPos.pos->x = mainGameMechsRef -> getBoardSizeX()/2;
-    playerPos.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
-    playerPos.symbol ='*';
+    // playerPos.pos->x = mainGameMechsRef -> getBoardSizeX()/2;
+    // playerPos.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
+    // playerPos.symbol ='*';
+
+    playerPosList->insertHead(headPos);
 }
 
 
 Player::~Player()
 {
-    delete playerPos.pos;
+    delete playerPosList;
 }
 
 objPos Player::getPlayerPos() const
@@ -102,7 +105,7 @@ void Player::movePlayer()
     {
         playerPos.pos->y = (mainGameMechsRef->getBoardSizeY() - 2);
     }
-    else if (playerY > 8)
+    else if (playerY > 8) //dont hard code: fix!
     {
         playerPos.pos->y = 1;
     }   

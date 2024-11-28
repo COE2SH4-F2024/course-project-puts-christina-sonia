@@ -17,7 +17,7 @@ class Food
     
     public:
         Food(); // default constructors
-        ~Food(); // default constructor
+        ~Food(); // destructor
 
         Food(const Food &other); //copy constructor
         Food& operator= (const Food &other); // copy assignment operator
