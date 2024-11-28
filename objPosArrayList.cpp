@@ -98,3 +98,8 @@ objPos objPosArrayList::getElement(int index) const
     }
     return objPos(); //if index is out of bounds just return empty object
 }
+
+// void Position::setPos(int new)
+// {
+//     aList[0].pos->x;
+// }

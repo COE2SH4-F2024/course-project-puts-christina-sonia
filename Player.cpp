@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "MacUILib.h"
 
 Player::Player(GameMechs* thisGMRef)
 {
@@ -73,23 +74,24 @@ void Player::updatePlayerDir()
 
 void Player::movePlayer()
 {
-    
+    // {UP, DOWN, LEFT, RIGHT, STOP}
     switch(myDir)
     {
         case LEFT:
-            playerPos.pos->x--;
+            playerPosList->getHeadElement().pos->x--;
             break;
         case RIGHT:
-            playerPos.pos->x++;
+            playerPosList->getHeadElement().pos->x++;
             break;
         case UP:
-            playerPos.pos->y--;
+            playerPosList->getHeadElement().pos->y--;
             break;
         case DOWN:
-            playerPos.pos->y++;
+            playerPosList->getHeadElement().pos->y++;
             break;
     }
 
+    MacUILib_printf("Current pos is x: %d, y: %d\n\n", playerPosList->getHeadElement().pos->x, playerPosList->getHeadElement().pos->y);
     //iter3: feature 2, insert tmp objpos to head of list, check if new temp objpos overlaps the food pos (get from game mechs class)
 //use iposequal() from object class
 
@@ -97,27 +99,59 @@ void Player::movePlayer()
 //if no overlap, remove tail, complete movement
 
 
-    int playerX = playerPosList.pos->x;
-    int playerY = playerPosList.pos->y;
+    int playerX = playerPosList->getHeadElement().pos->x;
+    int playerY = playerPosList->getHeadElement().pos->y;
 
     if (playerX < 1) //wraparound logic
     {
-        playerPos.pos->x = (mainGameMechsRef->getBoardSizeX() - 2);
+        playerPosList->getHeadElement().pos->x = (mainGameMechsRef->getBoardSizeX() - 2);
     }
     else if (playerX > 18)
     {
-        playerPos.pos->x = 1;
+        playerPosList->getHeadElement().pos->x = 1;
     }
     if (playerY < 1)
     {
-        playerPos.pos->y = (mainGameMechsRef->getBoardSizeY() - 2);
+        playerPosList->getHeadElement().pos->y = (mainGameMechsRef->getBoardSizeY() - 2);
     }
     else if (playerY > 8) //dont hard code: fix!
     {
-        playerPos.pos->y = 1;
+        playerPosList->getHeadElement().pos->y = 1;
     }   
 
     
 }
 
+
+
+void Player::moveList() //int represents enumeration location
+{
+    for (int i = 1; i < playerPosList->getSize(); i++)
+    {
+        switch (myDir)
+        {
+        case UP:
+            playerPosList->getElement(i).pos->x--;
+            break;
+        case DOWN:
+            playerPosList->getElement(i).pos->x++;
+            break;
+        case LEFT:
+            playerPosList->getElement(i).pos->y--;
+            break;
+        case RIGHT:
+            playerPosList->getElement(i).pos->y++;
+            break;
+        }
+    }
+
+    playerPosList->removeTail(); //delete tail element
+    
+    
+}
+
+int Player::getFSM()
+{
+    return myDir;
+}
 // More methods to be added

@@ -20,9 +20,12 @@ class Player
         Player(GameMechs* thisGMRef);
         ~Player();
 
-        objPosArrayList* getPlayerPos() const; // Upgrade this in iteration 3.       
+        objPosArrayList* getPlayerPos() const; // Upgrade this in iteration 3. Return reference to list      
         void updatePlayerDir();
         void movePlayer();
+        void moveList();
+        int getFSM();
+
 
         // More methods to be added here
 
