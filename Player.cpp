@@ -22,11 +22,11 @@ Player::~Player()
     delete playerPosList;
 }
 
-objPos Player::getPlayerPos() const
+objPosArrayList* Player::getPlayerPos() const
 {
     // return the reference to the playerPos arrray list
     
-    return playerPos;
+    return playerPosList;
 }
 
 void Player::updatePlayerDir()
@@ -90,8 +90,15 @@ void Player::movePlayer()
             break;
     }
 
-    int playerX = playerPos.pos->x;
-    int playerY = playerPos.pos->y;
+    //iter3: feature 2, insert tmp objpos to head of list, check if new temp objpos overlaps the food pos (get from game mechs class)
+//use iposequal() from object class
+
+//if overlapped, foodconsumed do not remove snake and take the respective actions to increase the tail
+//if no overlap, remove tail, complete movement
+
+
+    int playerX = playerPosList.pos->x;
+    int playerY = playerPosList.pos->y;
 
     if (playerX < 1) //wraparound logic
     {
