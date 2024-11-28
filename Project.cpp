@@ -79,16 +79,16 @@ void RunLogic(void)
     myGM->incrementScore();
     myGM->clearInput();
 
-    
+    myPlayer->movePlayer(myFood);
     //myPlayer->moveList();
+    myPlayer->movePlayer(myFood.getFoodPos());
     
 }
 
 void DrawScreen(void)
 {
     MacUILib_clearScreen();
-    
-    myPlayer->movePlayer();
+
     objPosArrayList* playerPos = myPlayer->getPlayerPos();
     int playerSize = playerPos->getSize();
     bool used;

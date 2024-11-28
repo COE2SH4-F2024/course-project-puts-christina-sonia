@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "MacUILib.h"
+#include "Food.h"
 
 Player::Player(GameMechs* thisGMRef)
 {
@@ -72,23 +73,29 @@ void Player::updatePlayerDir()
 
 }
 
-void Player::movePlayer()
+void Player::movePlayer(Food myfood)
 {
     // {UP, DOWN, LEFT, RIGHT, STOP}
     switch(myDir)
     {
         case LEFT:
-            playerPosList->getHeadElement().pos->x--;
+            playerPosList->setHeadPosX(playerPosList->getHeadElement().pos->x - 1);
             break;
         case RIGHT:
-            playerPosList->getHeadElement().pos->x++;
+            playerPosList->setHeadPosX(playerPosList->getHeadElement().pos->x + 1);
             break;
         case UP:
-            playerPosList->getHeadElement().pos->y--;
+            playerPosList->setHeadPosY(playerPosList->getHeadElement().pos->y - 1);
             break;
         case DOWN:
-            playerPosList->getHeadElement().pos->y++;
+            playerPosList->setHeadPosY(playerPosList->getHeadElement().pos->y + 1);
             break;
+    }
+
+    if (playerPosList->getHeadElement().pos->x == myfood.getFoodPos().pos->x && playerPosList->getHeadElement().pos->y == myfood.getFoodPos().pos->y)
+    {
+        playerPosList->insertHead(myfood.getFoodPos());
+        myfood.generateFood(playerPosList->getHeadElement(), 20, 10); // CHANGE BOARD SIZE
     }
 
     MacUILib_printf("Current pos is x: %d, y: %d\n\n", playerPosList->getHeadElement().pos->x, playerPosList->getHeadElement().pos->y);
@@ -104,19 +111,19 @@ void Player::movePlayer()
 
     if (playerX < 1) //wraparound logic
     {
-        playerPosList->getHeadElement().pos->x = (mainGameMechsRef->getBoardSizeX() - 2);
+        playerPosList->setHeadPosX(mainGameMechsRef->getBoardSizeX() - 2);
     }
     else if (playerX > 18)
     {
-        playerPosList->getHeadElement().pos->x = 1;
+        playerPosList->setHeadPosX(1);
     }
     if (playerY < 1)
     {
-        playerPosList->getHeadElement().pos->y = (mainGameMechsRef->getBoardSizeY() - 2);
+        playerPosList->setHeadPosY(mainGameMechsRef->getBoardSizeY() - 2);
     }
     else if (playerY > 8) //dont hard code: fix!
     {
-        playerPosList->getHeadElement().pos->y = 1;
+        playerPosList->setHeadPosY(1);
     }   
 
     
@@ -131,23 +138,21 @@ void Player::moveList() //int represents enumeration location
         switch (myDir)
         {
         case UP:
-            playerPosList->getElement(i).pos->x--;
+            playerPosList->setPosX(i, playerPosList->getElement(i).pos->x--);
             break;
         case DOWN:
-            playerPosList->getElement(i).pos->x++;
+            playerPosList->setPosX(i, playerPosList->getElement(i).pos->x++);
             break;
         case LEFT:
-            playerPosList->getElement(i).pos->y--;
+            playerPosList->setPosY(i, playerPosList->getElement(i).pos->y--);
             break;
         case RIGHT:
-            playerPosList->getElement(i).pos->y++;
+            playerPosList->setPosY(i, playerPosList->getElement(i).pos->y++);
             break;
         }
     }
 
     playerPosList->removeTail(); //delete tail element
-    
-    
 }
 
 int Player::getFSM()

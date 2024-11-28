@@ -37,7 +37,7 @@ void objPosArrayList::insertHead(objPos thisPos)
         
     }
 
-    aList[0].symbol = thisPos.symbol;
+    aList[0].symbol = '@';
     aList[0].pos->x = thisPos.pos->x;
     aList[0].pos->y = thisPos.pos->y;
     
@@ -99,7 +99,27 @@ objPos objPosArrayList::getElement(int index) const
     return objPos(); //if index is out of bounds just return empty object
 }
 
-// void Position::setPos(int new)
+void objPosArrayList::setHeadPosX(int newPosX)
+{
+    aList[0].pos->x = newPosX;
+}
+
+void objPosArrayList::setHeadPosY(int newPosY)
+{
+    aList[0].pos->y = newPosY;
+}
+
+void objPosArrayList::setPosX(int index, int newPosX)
+{
+    aList[index].pos->x = newPosX;
+}
+
+void objPosArrayList::setPosY(int index, int newPosY)
+{
+    aList[index].pos->y = newPosY;
+}
+
+// Pos* objPosArrayList::posAddress()
 // {
-//     aList[0].pos->x;
-// }
+//     return aList[0].pos;
+// } can REMOVE AFTER

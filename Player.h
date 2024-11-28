@@ -4,6 +4,7 @@
 #include "GameMechs.h"
 #include "objPos.h"
 #include "objPosArrayList.h"
+#include "Food.h"
 
 class Player
 {
@@ -22,7 +23,7 @@ class Player
 
         objPosArrayList* getPlayerPos() const; // Upgrade this in iteration 3. Return reference to list      
         void updatePlayerDir();
-        void movePlayer();
+        void movePlayer(Food myfood);
         void moveList();
         int getFSM();
 
@@ -33,6 +34,8 @@ class Player
         //objPos playerPos; // Upgrade this in iteration 3.      
         objPosArrayList* playerPosList; 
         enum Dir myDir;
+        Food yum;
+        
 
         // Need a reference to the Main Game Mechanisms
         GameMechs* mainGameMechsRef;
