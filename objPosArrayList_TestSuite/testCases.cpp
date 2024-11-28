@@ -36,7 +36,9 @@ void testConstructor()
 	objPos zeroPos, currentPos;
 	objPosArrayList thisList;
 	int expectedSize = 0;
+
 	int actualSize = thisList.getSize();
+
 	
 	// First check the list size
 	result &= assert_equal(expectedSize, actualSize);
@@ -48,7 +50,9 @@ void testConstructor()
 	for(int i = 0; i < ARRAY_MAX_CAP; i++)
 	{
 		currentPos = thisList.getElement(i);
+
 		actualCheck = zeroPos.isPosEqual(&currentPos);
+
 
 		result &= assert_equal(expectedCheck, actualCheck);
 	}
@@ -75,7 +79,8 @@ void testInsertHead_1Element()
 
 	int expectedSize = 1;
 	int actualSize = thisList.getSize();
-		
+	//printf("%c",actualSize);
+
 	// First check the list size is 1
 	result &= assert_equal(expectedSize, actualSize);
 
@@ -85,7 +90,6 @@ void testInsertHead_1Element()
 	// Then check whether the head element is what we have inserted.
 	currentPos = thisList.getHeadElement();
 	actualCheck = samplePos.isPosEqual(&currentPos);
-
 	result &= assert_equal(expectedCheck, actualCheck);
 
 
@@ -94,7 +98,6 @@ void testInsertHead_1Element()
 	actualCheck = samplePos.isPosEqual(&currentPos);
 
 	result &= assert_equal(expectedCheck, actualCheck);
-
 
 	// Finally, chech whether the element at index = 0 is also the head element in a list of 1 element
 	// Then check whether the head element is what we have inserted.
@@ -132,7 +135,7 @@ void testInsertHead_5Element()
 		
 	// Confirm the list size is now 5
 	result &= assert_equal(expectedSize, actualSize);
-
+	
 	bool expectedCheck = true;
 	bool actualCheck;
 
@@ -146,9 +149,11 @@ void testInsertHead_5Element()
 	for(int i = 1; i < actualSize - 1; i++)
 	{
 		currentPos = thisList.getElement(i);
+		
 		actualCheck = bodyPos.isPosEqual(&currentPos);
 
 		result &= assert_equal(expectedCheck, actualCheck);	
+
 	}
 
 	// Finally, check the tail element is the body element
