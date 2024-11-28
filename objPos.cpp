@@ -19,11 +19,8 @@ objPos::objPos(int xPos, int yPos, char sym) //constructor
     symbol = sym;
 }
 
-// Respect the rule of six / minimum four
-// [TODO] Implement the missing special member functions to meet the minimum four rule
 
 //destructor
-
 objPos::~objPos()
 {
     delete pos;
