@@ -111,12 +111,14 @@ void objPosArrayList::setHeadPosY(int newPosY)
 
 void objPosArrayList::setPosX(int index, int newPosX)
 {
-    aList[index].pos->x = newPosX;
+    //aList[index].pos->x = newPosX;
+    this->aList[index].pos->x = newPosX;
 }
 
 void objPosArrayList::setPosY(int index, int newPosY)
 {
-    aList[index].pos->y = newPosY;
+    //aList[index].pos->y = newPosY;
+    this->aList[index].pos->y = newPosY;
 }
 
 // Pos* objPosArrayList::posAddress()

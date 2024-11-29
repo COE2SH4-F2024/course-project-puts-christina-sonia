@@ -34,6 +34,7 @@ class Player
         //objPos playerPos; // Upgrade this in iteration 3.      
         objPosArrayList* playerPosList; 
         enum Dir myDir;
+        bool growth;
         
 
         // Need a reference to the Main Game Mechanisms

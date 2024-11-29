@@ -95,7 +95,12 @@ void Player::movePlayer(Food myfood)
     if (playerPosList->getHeadElement().pos->x == myfood.getFoodPos().pos->x && playerPosList->getHeadElement().pos->y == myfood.getFoodPos().pos->y)
     {
         playerPosList->insertHead(myfood.getFoodPos());
-        myfood.generateFood(playerPosList->getHeadElement(), 20, 10); // CHANGE BOARD SIZE
+        myfood.generateFood(playerPosList->getHeadElement(), 18, 8); // CHANGE BOARD SIZE
+        growth = true;
+    }
+
+    else{
+        growth = false;
     }
 
     MacUILib_printf("Current pos is x: %d, y: %d\n\n", playerPosList->getHeadElement().pos->x, playerPosList->getHeadElement().pos->y);
@@ -133,26 +138,32 @@ void Player::movePlayer(Food myfood)
 
 void Player::moveList() //int represents enumeration location
 {
-    for (int i = 1; i < playerPosList->getSize(); i++)
-    {
-        switch (myDir)
-        {
-        case UP:
-            playerPosList->setPosX(i, playerPosList->getElement(i).pos->x--);
-            break;
-        case DOWN:
-            playerPosList->setPosX(i, playerPosList->getElement(i).pos->x++);
-            break;
-        case LEFT:
-            playerPosList->setPosY(i, playerPosList->getElement(i).pos->y--);
-            break;
-        case RIGHT:
-            playerPosList->setPosY(i, playerPosList->getElement(i).pos->y++);
-            break;
-        }
+    for (int i =playerPosList->getSize()-1;i>0;i--){
+        playerPosList ->setPosX(i, playerPosList->getElement(i-1).pos->x);
+        playerPosList ->setPosY(i, playerPosList->getElement(i-1).pos->y);
     }
+    // for (int i = 1; i < playerPosList->getSize(); i++)
+    // {
+    //     switch (myDir)
+    //     {
+    //     case UP:
+    //         playerPosList->setPosX(i, playerPosList->getElement(i).pos->x--);
+    //         break;
+    //     case DOWN:
+    //         playerPosList->setPosX(i, playerPosList->getElement(i).pos->x++);
+    //         break;
+    //     case LEFT:
+    //         playerPosList->setPosY(i, playerPosList->getElement(i).pos->y--);
+    //         break;
+    //     case RIGHT:
+    //         playerPosList->setPosY(i, playerPosList->getElement(i).pos->y++);
+    //         break;
+    //     }
+    // }
 
-    playerPosList->removeTail(); //delete tail element
+    if(!growth){
+        playerPosList->removeTail(); //delete tail element
+    }
 }
 
 int Player::getFSM()

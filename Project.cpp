@@ -65,7 +65,7 @@ void Initialize(void)
 void GetInput(void)
 {
     myGM->collectAsyncInput();
-    // if (myGM->getInput()=='t'){
+    //if (myGM->getInput()=='t'){
     //     myFood -> generateFood(myPlayerList[0]->getPlayerPos(), boardX, boardY);
     // } // not sure if this is what they meant but it works
 
@@ -80,7 +80,6 @@ void RunLogic(void)
     myGM->clearInput();
 
     myPlayer->movePlayer(*myFood); // HI SONIA: dereference myFood was the fix. Please verify!
-
     //myPlayer->moveList();
     
 }
