@@ -94,9 +94,9 @@ void Player::movePlayer(Food myfood)
 
     if (playerPosList->getHeadElement().pos->x == myfood.getFoodPos().pos->x && playerPosList->getHeadElement().pos->y == myfood.getFoodPos().pos->y)
     {
-        playerPosList->insertHead(myfood.getFoodPos());
+        playerPosList->insertHead(myfood.getFoodPos()); // make sure food position is actually being recieved in conditional
         myfood.generateFood(playerPosList->getHeadElement(), 18, 8); // CHANGE BOARD SIZE
-
+        //modify getHeadElement and food file (blockoff) to check where EVERY list placement is, and if so then flag and generate food elsewhere
     }
 
     MacUILib_printf("Current pos is x: %d, y: %d\n\n", playerPosList->getHeadElement().pos->x, playerPosList->getHeadElement().pos->y);
