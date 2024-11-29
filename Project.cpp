@@ -13,7 +13,7 @@ using namespace std;
 
 Player *myPlayer; 
 GameMechs *myGM;
-Food *myFood;
+Food* myFood;
 
 int boardX;
 int boardY; //ensure this is allowed
@@ -79,9 +79,9 @@ void RunLogic(void)
     myGM->incrementScore();
     myGM->clearInput();
 
-    myPlayer->movePlayer(myFood);
+    myPlayer->movePlayer(*myFood); // HI SONIA: dereference myFood was the fix. Please verify!
+
     //myPlayer->moveList();
-    myPlayer->movePlayer(myFood.getFoodPos());
     
 }
 
