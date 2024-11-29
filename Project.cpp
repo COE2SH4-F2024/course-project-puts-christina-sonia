@@ -8,7 +8,7 @@
 
 using namespace std;
 
-#define DELAY_CONST 100000
+#define DELAY_CONST 200000 // originally 100000
 
 
 Player *myPlayer; 

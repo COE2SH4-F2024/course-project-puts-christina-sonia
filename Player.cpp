@@ -131,6 +131,11 @@ void Player::movePlayer(Food myfood)
         playerPosList->setHeadPosY(1);
     }   
 
+    for (int i =playerPosList->getSize()-1;i>0;i--){
+        playerPosList ->setPosX(i, playerPosList->getElement(i-1).pos->x);
+        playerPosList ->setPosY(i, playerPosList->getElement(i-1).pos->y);
+    }
+
     
 }
 
@@ -161,9 +166,9 @@ void Player::moveList() //int represents enumeration location
     //     }
     // }
 
-    if(!growth){
-        playerPosList->removeTail(); //delete tail element
-    }
+    //if(!growth){
+       // playerPosList->removeTail(); //delete tail element
+   // }
 }
 
 int Player::getFSM()
