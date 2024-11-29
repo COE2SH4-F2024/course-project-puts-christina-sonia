@@ -96,9 +96,7 @@ void Player::movePlayer(Food myfood)
     {
         playerPosList->insertHead(myfood.getFoodPos());
         myfood.generateFood(playerPosList->getHeadElement(), 18, 8); // CHANGE BOARD SIZE
-    }
-    else{
-        playerPosList->removeTail();
+
     }
 
     MacUILib_printf("Current pos is x: %d, y: %d\n\n", playerPosList->getHeadElement().pos->x, playerPosList->getHeadElement().pos->y);
