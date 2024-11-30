@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "cstdlib": "cpp"
+        "cstdlib": "cpp",
+        "memory": "cpp",
+        "functional": "cpp",
+        "istream": "cpp"
     }
 }

@@ -10,11 +10,6 @@ Player::Player(GameMechs* thisGMRef)
 
     objPos headPos(thisGMRef->getBoardSizeX() / 2, thisGMRef->getBoardSizeY() / 2, '@');
 
-    // more actions to be included
-    // playerPos.pos->x = mainGameMechsRef -> getBoardSizeX()/2;
-    // playerPos.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
-    // playerPos.symbol ='*';
-
     playerPosList->insertHead(headPos);
 }
 
@@ -149,24 +144,19 @@ void Player::movePlayer(Food myfood)
     //     wrapAround = true;
     // }   
 
-     objPos nextPosition(playerPosList ->getHeadElement().pos->x, playerPosList->getHeadElement().pos->y,'O');
-    // {UP, DOWN, LEFT, RIGHT, STOP}
+     objPos nextPosition(playerPosList ->getHeadElement().pos->x, playerPosList->getHeadElement().pos->y,'@');
     switch(myDir)
     {
         case LEFT:
-            //playerPosList->setHeadPosX(playerPosList->getHeadElement().pos->x - 1);
             nextPosition.setObjPos(nextPosition.pos->x-1, nextPosition.pos->y, nextPosition.symbol);
             break;
         case RIGHT:
-            //playerPosList->setHeadPosX(playerPosList->getHeadElement().pos->x + 1);
             nextPosition.setObjPos(nextPosition.pos->x+1, nextPosition.pos->y, nextPosition.symbol);
             break;
         case UP:
-            //playerPosList->setHeadPosY(playerPosList->getHeadElement().pos->y - 1);
             nextPosition.setObjPos(nextPosition.pos->x, nextPosition.pos->y-1, nextPosition.symbol);
             break;
         case DOWN:
-            //playerPosList->setHeadPosY(playerPosList->getHeadElement().pos->y + 1);
             nextPosition.setObjPos(nextPosition.pos->x, nextPosition.pos->y+1, nextPosition.symbol);
             break;
     }
@@ -174,11 +164,9 @@ void Player::movePlayer(Food myfood)
     playerPosList ->insertHead(nextPosition.getObjPos());
 
     // if overlapped, food is consumed (do not remove snake and take repspective actions tp increase tail)
-    if (playerPosList->getHeadElement().pos->x == myfood.getFoodPos().pos->x && playerPosList->getHeadElement().pos->y == myfood.getFoodPos().pos->y)
+    if (playerPosList->getHeadElement().pos->x == myfood.getFoodPos().pos->x && playerPosList->getHeadElement().pos->y == myfood.getFoodPos().pos->y) //nextPosition.isPosEqual(myfood->get) == 1
     {
-        //playerPosList->insertHead(myfood.getFoodPos());
         myfood.generateFood(*playerPosList, 18, 8); // CHANGE BOARD SIZE
-
     }
     else
     {
