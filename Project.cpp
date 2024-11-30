@@ -129,7 +129,6 @@ void DrawScreen(void)
     }
 
     MacUILib_printf("Current pos is x: %d, y: %d\n\n", myPlayer->getPlayerPos()->getHeadElement().pos->x, myPlayer->getPlayerPos()->getHeadElement().pos->y);
-    MacUILib_printf("Current FSM state: %d", myPlayer->getFSM());
 }
 
 void LoopDelay(void)

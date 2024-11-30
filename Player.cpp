@@ -217,10 +217,5 @@ void Player::movePlayer(Food myfood)
         playerPosList->setHeadPosY(1);
         wrapAround = true;
     }   
-
-    
-
     
 }
-
-

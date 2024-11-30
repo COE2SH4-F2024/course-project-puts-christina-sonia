@@ -24,8 +24,6 @@ class Player
         objPosArrayList* getPlayerPos() const; // Upgrade this in iteration 3. Return reference to list      
         void updatePlayerDir();
         void movePlayer(Food myfood);
-        void moveList();
-        int getFSM();
 
 
         // More methods to be added here
