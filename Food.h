@@ -23,7 +23,7 @@ class Food
         Food& operator= (const Food &other); // copy assignment operator
 
 
-        void generateFood(objPos blockOff, int x_size, int y_size);
+        void generateFood(objPosArrayList& list, int x_size, int y_size);
         objPos getFoodPos() const;
 
 
