@@ -120,8 +120,3 @@ void objPosArrayList::setPosY(int index, int newPosY)
     //aList[index].pos->y = newPosY;
     this->aList[index].pos->y = newPosY;
 }
-
-// Pos* objPosArrayList::posAddress()
-// {
-//     return aList[0].pos;
-// } can REMOVE AFTER

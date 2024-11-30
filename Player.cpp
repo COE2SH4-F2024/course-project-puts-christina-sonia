@@ -79,6 +79,7 @@ void Player::movePlayer(Food myfood)
     switch(myDir)
     {
         case LEFT:
+            //playerPosList->getHeadElement().pos->x--;
             playerPosList->setHeadPosX(playerPosList->getHeadElement().pos->x - 1);
             break;
         case RIGHT:
@@ -92,11 +93,21 @@ void Player::movePlayer(Food myfood)
             break;
     }
 
+    playerPosList->insertHead(playerPosList->getHeadElement());
+    int collision = 0;
+
+
     if (playerPosList->getHeadElement().pos->x == myfood.getFoodPos().pos->x && playerPosList->getHeadElement().pos->y == myfood.getFoodPos().pos->y)
     {
-        playerPosList->insertHead(myfood.getFoodPos()); // make sure food position is actually being recieved in conditional
+        //playerPosList->insertHead(myfood.getFoodPos()); // make sure food position is actually being recieved in conditional
         myfood.generateFood(playerPosList->getHeadElement(), 18, 8); // CHANGE BOARD SIZE
         //modify getHeadElement and food file (blockoff) to check where EVERY list placement is, and if so then flag and generate food elsewhere
+        collision = 1;
+        
+    }
+    if (collision != 1)
+    {
+        playerPosList->removeTail();
     }
 
     MacUILib_printf("Current pos is x: %d, y: %d\n\n", playerPosList->getHeadElement().pos->x, playerPosList->getHeadElement().pos->y);
@@ -127,12 +138,11 @@ void Player::movePlayer(Food myfood)
         playerPosList->setHeadPosY(1);
     }   
 
-    for (int i =playerPosList->getSize()-1;i>0;i--){
-        playerPosList ->setPosX(i, playerPosList->getElement(i-1).pos->x);
-        playerPosList ->setPosY(i, playerPosList->getElement(i-1).pos->y);
-    }
-
-    
+  
+    // for (int i =playerPosList->getSize()-1;i>0;i--){
+    //     playerPosList ->setPosX(i, playerPosList->getElement(i-1).pos->x);
+    //     playerPosList ->setPosY(i, playerPosList->getElement(i-1).pos->y);
+    // }
 }
 
 
