@@ -106,7 +106,7 @@ void Player::movePlayer(Food myfood)
     if (playerPosList->getHeadElement().pos->x == myfood.getFoodPos().pos->x && playerPosList->getHeadElement().pos->y == myfood.getFoodPos().pos->y)
     {
         playerPosList->insertHead(myfood.getFoodPos());
-        myfood.generateFood(playerPosList->getHeadElement(), 18, 8); // CHANGE BOARD SIZE
+        myfood.generateFood(*playerPosList, 18, 8); // CHANGE BOARD SIZE
 
     }
 
