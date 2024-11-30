@@ -107,8 +107,14 @@ void Player::movePlayer(Food myfood)
     {
         playerPosList->insertHead(myfood.getFoodPos());
         myfood.generateFood(*playerPosList, 18, 8); // CHANGE BOARD SIZE
+        collision = 1;
 
     }
+    if (collision != 1)
+    {
+        playerPosList->removeTail();
+    }
+
 
     MacUILib_printf("Current pos is x: %d, y: %d\n\n", playerPosList->getHeadElement().pos->x, playerPosList->getHeadElement().pos->y);
     //iter3: feature 2, insert tmp objpos to head of list, check if new temp objpos overlaps the food pos (get from game mechs class)
@@ -142,12 +148,6 @@ void Player::movePlayer(Food myfood)
         playerPosList->setHeadPosY(1);
         wrapAround = true;
     }   
-
-    for (int i =playerPosList->getSize()-1;i>0;i--){
-        playerPosList ->setPosX(i, playerPosList->getElement(i-1).pos->x);
-        playerPosList ->setPosY(i, playerPosList->getElement(i-1).pos->y);
-    }
-
     
 }
 
