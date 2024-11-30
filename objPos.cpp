@@ -13,7 +13,7 @@ objPos::objPos()
 
 objPos::objPos(int xPos, int yPos, char sym) //constructor
 {
-    cout << "Copy assignment operator called\n";
+    //cout << "Copy assignment operator called\n";
 
     pos = new Pos;
     pos->x = xPos;
@@ -31,7 +31,7 @@ objPos::~objPos()
 //copy constructor
 objPos::objPos(const objPos &a)
 {
-    cout << "Copy constructor called\n";
+    //cout << "Copy constructor called\n";
     pos = new Pos;
     pos->x = a.pos->x;
     pos->y = a.pos->y;
@@ -42,7 +42,7 @@ objPos::objPos(const objPos &a)
 //copy assignment operator
 objPos& objPos::operator=(const objPos &a)
 {
-    cout << "Copy assignment operator called\n";
+    //cout << "Copy assignment operator called\n";
     if (this != &a) //including this decreases the memory required for your data
     {
         this->symbol = a.symbol;
