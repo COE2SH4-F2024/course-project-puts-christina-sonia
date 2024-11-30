@@ -80,8 +80,7 @@ void Player::movePlayer(Food myfood)
     switch(myDir)
     {
         case LEFT:
-            //playerPosList->setHeadPosX(playerPosList->getHeadElement().pos->x - 1);
-            nextPosition.setObjPos(nextPosition.pos->x-1, nextPosition.pos->y, nextPosition.symbol);
+            playerPosList->setHeadPosX(playerPosList->getHeadElement().pos->x - 1);
             break;
         case RIGHT:
             //playerPosList->setHeadPosX(playerPosList->getHeadElement().pos->x + 1);
@@ -97,18 +96,18 @@ void Player::movePlayer(Food myfood)
             break;
     }
 
+    playerPosList->insertHead(playerPosList->getHeadElement());
+    int collision = 0;
+
+
     playerPosList ->insertHead(nextPosition.getObjPos());
 
     // if overlapped, food is consumed (do not remove snake and take repspective actions tp increase tail)
     if (playerPosList->getHeadElement().pos->x == myfood.getFoodPos().pos->x && playerPosList->getHeadElement().pos->y == myfood.getFoodPos().pos->y)
     {
-        //playerPosList->insertHead(myfood.getFoodPos());
-        myfood.generateFood(*playerPosList, 18, 8); // CHANGE BOARD SIZE
+        playerPosList->insertHead(myfood.getFoodPos());
+        myfood.generateFood(playerPosList->getHeadElement(), 18, 8); // CHANGE BOARD SIZE
 
-    }
-    else
-    {
-        playerPosList->removeTail();
     }
 
     MacUILib_printf("Current pos is x: %d, y: %d\n\n", playerPosList->getHeadElement().pos->x, playerPosList->getHeadElement().pos->y);
@@ -144,15 +143,11 @@ void Player::movePlayer(Food myfood)
         wrapAround = true;
     }   
 
-    if (wrapAround)
-    {
-        
     for (int i =playerPosList->getSize()-1;i>0;i--){
         playerPosList ->setPosX(i, playerPosList->getElement(i-1).pos->x);
         playerPosList ->setPosY(i, playerPosList->getElement(i-1).pos->y);
     }
 
-    }
     
 }
 

@@ -78,7 +78,7 @@ void RunLogic(void)
 
     myGM->incrementScore();
     myGM->clearInput();
-
+    //call Food function generation here? (initialize?)
     myPlayer->movePlayer(*myFood); // HI SONIA: dereference myFood was the fix. Please verify!
     //myPlayer->moveList();
     

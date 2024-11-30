@@ -31,7 +31,7 @@ int objPosArrayList::getSize() const
 void objPosArrayList::insertHead(objPos thisPos)
 {
     
-    for (int i = listSize; i > 0; i--)
+    for (int i = listSize - 1; i > 0; i--)
     {
         aList[i] = aList[i-1];
         
@@ -120,8 +120,3 @@ void objPosArrayList::setPosY(int index, int newPosY)
     //aList[index].pos->y = newPosY;
     this->aList[index].pos->y = newPosY;
 }
-
-// Pos* objPosArrayList::posAddress()
-// {
-//     return aList[0].pos;
-// } can REMOVE AFTER
