@@ -87,7 +87,7 @@ void RunLogic(void)
 void DrawScreen(void)
 {
     MacUILib_clearScreen();
-
+    objPos thisSeg;
     objPosArrayList* playerPos = myPlayer->getPlayerPos();
     int playerSize = playerPos->getSize();
     bool used;
@@ -97,7 +97,7 @@ void DrawScreen(void)
             used = false;
             for (int k = 0; k < playerSize; k++)
             {
-                objPos thisSeg = playerPos->getElement(k);
+                thisSeg = playerPos->getElement(k);
                 if (thisSeg.pos->x == j && thisSeg.pos->y == i)
                 {
                     MacUILib_printf("%c", thisSeg.symbol);
@@ -129,6 +129,8 @@ void DrawScreen(void)
     }
 
     MacUILib_printf("Current pos is x: %d, y: %d\n\n", myPlayer->getPlayerPos()->getHeadElement().pos->x, myPlayer->getPlayerPos()->getHeadElement().pos->y);
+    MacUILib_printf("Food position at (%d, %d)\n", myFood->getFoodPos().pos->x, myFood->getFoodPos().pos->y);
+    MacUILib_printf("player pos element: (%d, %d)", thisSeg.pos->x, thisSeg.pos->y);
 }
 
 void LoopDelay(void)

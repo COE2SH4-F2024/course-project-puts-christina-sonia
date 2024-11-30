@@ -144,7 +144,7 @@ void Player::movePlayer(Food myfood)
     //     wrapAround = true;
     // }   
 
-     objPos nextPosition(playerPosList ->getHeadElement().pos->x, playerPosList->getHeadElement().pos->y,'@');
+    objPos nextPosition(playerPosList->getHeadElement().pos->x, playerPosList->getHeadElement().pos->y,'@');
     switch(myDir)
     {
         case LEFT:
@@ -161,7 +161,7 @@ void Player::movePlayer(Food myfood)
             break;
     }
 
-    playerPosList ->insertHead(nextPosition.getObjPos());
+    playerPosList->insertHead(nextPosition.getObjPos());
 
     // if overlapped, food is consumed (do not remove snake and take repspective actions tp increase tail)
     if (playerPosList->getHeadElement().pos->x == myfood.getFoodPos().pos->x && playerPosList->getHeadElement().pos->y == myfood.getFoodPos().pos->y) //nextPosition.isPosEqual(myfood->get) == 1

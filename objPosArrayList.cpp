@@ -14,13 +14,44 @@ objPosArrayList::objPosArrayList()
     {
         aList[i].pos->x = 0;
         aList[i].pos->y = 0;
-        aList[i].symbol = 0;
+        aList[i].symbol = 0; //NULL
     }
 }
 
 objPosArrayList::~objPosArrayList()
 {
     delete[] aList;
+}
+
+objPosArrayList::objPosArrayList(const objPosArrayList& other)
+{
+    listSize = other.listSize;
+    arrayCapacity = other.arrayCapacity;
+
+    for (int i = 0; i < listSize; i++)
+    {
+        aList[i] = other.aList[i];
+    }
+
+}
+
+objPosArrayList& objPosArrayList::operator=(const objPosArrayList& other)
+{
+    if (this == &other)
+    {
+        listSize = other.listSize;
+        arrayCapacity = other.arrayCapacity;
+
+        delete[] aList;
+
+        aList = new objPos[arrayCapacity];
+
+        for (int i = 0; i < listSize; i++)
+        {
+            aList[i] = other.aList[i];
+        }
+    }
+    return *this;
 }
 
 int objPosArrayList::getSize() const
