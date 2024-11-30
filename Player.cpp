@@ -75,12 +75,87 @@ void Player::updatePlayerDir()
 
 void Player::movePlayer(Food myfood)
 {
-    objPos nextPosition(playerPosList ->getHeadElement().pos->x, playerPosList->getHeadElement().pos->y,'O');
+    // objPos nextPosition(playerPosList ->getHeadElement().pos->x, playerPosList->getHeadElement().pos->y,'O');
+    // // {UP, DOWN, LEFT, RIGHT, STOP}
+    // switch(myDir)
+    // {
+    //     case LEFT:
+    //         playerPosList->setHeadPosX(playerPosList->getHeadElement().pos->x - 1);
+    //         break;
+    //     case RIGHT:
+    //         //playerPosList->setHeadPosX(playerPosList->getHeadElement().pos->x + 1);
+    //         nextPosition.setObjPos(nextPosition.pos->x+1, nextPosition.pos->y, nextPosition.symbol);
+    //         break;
+    //     case UP:
+    //         //playerPosList->setHeadPosY(playerPosList->getHeadElement().pos->y - 1);
+    //         nextPosition.setObjPos(nextPosition.pos->x, nextPosition.pos->y-1, nextPosition.symbol);
+    //         break;
+    //     case DOWN:
+    //         //playerPosList->setHeadPosY(playerPosList->getHeadElement().pos->y + 1);
+    //         nextPosition.setObjPos(nextPosition.pos->x, nextPosition.pos->y+1, nextPosition.symbol);
+    //         break;
+    // }
+
+    // playerPosList->insertHead(playerPosList->getHeadElement());
+    // int collision = 0;
+
+
+    // playerPosList ->insertHead(nextPosition.getObjPos());
+
+    // // if overlapped, food is consumed (do not remove snake and take repspective actions tp increase tail)
+    // if (playerPosList->getHeadElement().pos->x == myfood.getFoodPos().pos->x && playerPosList->getHeadElement().pos->y == myfood.getFoodPos().pos->y)
+    // {
+    //     playerPosList->insertHead(myfood.getFoodPos());
+    //     myfood.generateFood(*playerPosList, 18, 8); // CHANGE BOARD SIZE
+    //     collision = 1;
+
+    // }
+    // if (collision != 1)
+    // {
+    //     playerPosList->removeTail();
+    // }
+
+
+    // MacUILib_printf("Current pos is x: %d, y: %d\n\n", playerPosList->getHeadElement().pos->x, playerPosList->getHeadElement().pos->y);
+    // //iter3: feature 2, insert tmp objpos to head of list, check if new temp objpos overlaps the food pos (get from game mechs class)
+    // //use iposequal() from object class
+
+    // //if overlapped, foodconsumed do not remove snake and take the respective actions to increase the tail
+    // //if no overlap, remove tail, complete movement
+
+
+    // int playerX = playerPosList->getHeadElement().pos->x;
+    // int playerY = playerPosList->getHeadElement().pos->y;
+    // bool wrapAround = false;
+
+    // if (playerX < 1) //wraparound logic
+    // {
+    //     playerPosList->setHeadPosX(mainGameMechsRef->getBoardSizeX() - 2);
+    //     wrapAround = true;
+    // }
+    // else if (playerX > 18)
+    // {
+    //     playerPosList->setHeadPosX(1);
+    //     wrapAround = true;
+    // }
+    // if (playerY < 1)
+    // {
+    //     playerPosList->setHeadPosY(mainGameMechsRef->getBoardSizeY() - 2);
+    //     wrapAround = true;
+    // }
+    // else if (playerY > 8) //dont hard code: fix!
+    // {
+    //     playerPosList->setHeadPosY(1);
+    //     wrapAround = true;
+    // }   
+
+     objPos nextPosition(playerPosList ->getHeadElement().pos->x, playerPosList->getHeadElement().pos->y,'O');
     // {UP, DOWN, LEFT, RIGHT, STOP}
     switch(myDir)
     {
         case LEFT:
-            playerPosList->setHeadPosX(playerPosList->getHeadElement().pos->x - 1);
+            //playerPosList->setHeadPosX(playerPosList->getHeadElement().pos->x - 1);
+            nextPosition.setObjPos(nextPosition.pos->x-1, nextPosition.pos->y, nextPosition.symbol);
             break;
         case RIGHT:
             //playerPosList->setHeadPosX(playerPosList->getHeadElement().pos->x + 1);
@@ -96,25 +171,19 @@ void Player::movePlayer(Food myfood)
             break;
     }
 
-    playerPosList->insertHead(playerPosList->getHeadElement());
-    int collision = 0;
-
-
     playerPosList ->insertHead(nextPosition.getObjPos());
 
     // if overlapped, food is consumed (do not remove snake and take repspective actions tp increase tail)
     if (playerPosList->getHeadElement().pos->x == myfood.getFoodPos().pos->x && playerPosList->getHeadElement().pos->y == myfood.getFoodPos().pos->y)
     {
-        playerPosList->insertHead(myfood.getFoodPos());
+        //playerPosList->insertHead(myfood.getFoodPos());
         myfood.generateFood(*playerPosList, 18, 8); // CHANGE BOARD SIZE
-        collision = 1;
 
     }
-    if (collision != 1)
+    else
     {
         playerPosList->removeTail();
     }
-
 
     MacUILib_printf("Current pos is x: %d, y: %d\n\n", playerPosList->getHeadElement().pos->x, playerPosList->getHeadElement().pos->y);
     //iter3: feature 2, insert tmp objpos to head of list, check if new temp objpos overlaps the food pos (get from game mechs class)
@@ -148,43 +217,10 @@ void Player::movePlayer(Food myfood)
         playerPosList->setHeadPosY(1);
         wrapAround = true;
     }   
+
+    
+
     
 }
 
 
-
-void Player::moveList() //int represents enumeration location
-{
-    for (int i =playerPosList->getSize()-1;i>0;i--){
-        playerPosList ->setPosX(i, playerPosList->getElement(i-1).pos->x);
-        playerPosList ->setPosY(i, playerPosList->getElement(i-1).pos->y);
-    }
-    // for (int i = 1; i < playerPosList->getSize(); i++)
-    // {
-    //     switch (myDir)
-    //     {
-    //     case UP:
-    //         playerPosList->setPosX(i, playerPosList->getElement(i).pos->x--);
-    //         break;
-    //     case DOWN:
-    //         playerPosList->setPosX(i, playerPosList->getElement(i).pos->x++);
-    //         break;
-    //     case LEFT:
-    //         playerPosList->setPosY(i, playerPosList->getElement(i).pos->y--);
-    //         break;
-    //     case RIGHT:
-    //         playerPosList->setPosY(i, playerPosList->getElement(i).pos->y++);
-    //         break;
-    //     }
-    // }
-
-    //if(!growth){
-       // playerPosList->removeTail(); //delete tail element
-   // }
-}
-
-int Player::getFSM()
-{
-    return myDir;
-}
-// More methods to be added
