@@ -86,7 +86,7 @@ void Player::movePlayer(Food& myfood, GameMechs& gm) // added gamemechs count
 {
 
 
-    objPos nextPosition(playerPosList ->getHeadElement().pos->x, playerPosList->getHeadElement().pos->y,'@');
+    objPos nextPosition(playerPosList ->getHeadElement().pos->x, playerPosList->getHeadElement().pos->y,'O');
     switch(myDir)
     {
         case LEFT:
@@ -151,5 +151,6 @@ void Player::movePlayer(Food& myfood, GameMechs& gm) // added gamemechs count
         playerPosList->setHeadPosY(1);
         wrapAround = true;
     }   
+    
 
 }
