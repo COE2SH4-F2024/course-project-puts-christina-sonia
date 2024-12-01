@@ -16,7 +16,7 @@ Food :: ~Food()
 }
 
 Food :: Food(const Food &other){
-    this->foodPos = other.foodPos;
+    this ->foodPos = other.foodPos;
 } 
 
 Food& Food :: operator=(const Food &other){
