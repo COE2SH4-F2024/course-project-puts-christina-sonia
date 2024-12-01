@@ -13,6 +13,8 @@ objPos::objPos()
 
 objPos::objPos(int xPos, int yPos, char sym) //constructor
 {
+    //cout << "Copy assignment operator called\n";
+
     pos = new Pos;
     pos->x = xPos;
     pos->y = yPos;
@@ -23,15 +25,17 @@ objPos::objPos(int xPos, int yPos, char sym) //constructor
 //destructor
 objPos::~objPos()
 {
-    delete pos;
+    delete[] pos;
 }
 
 //copy constructor
 objPos::objPos(const objPos &a)
 {
+    //cout << "Copy constructor called\n";
+    pos = new Pos;
+    pos->x = a.pos->x;
+    pos->y = a.pos->y;
     symbol = a.symbol;
-    
-    pos = new Pos{a.pos->x, a.pos->y};
     
 }
 
@@ -44,6 +48,7 @@ objPos& objPos::operator=(const objPos &a)
         this->pos = new Pos{a.pos->x, a.pos->y};
         return *this;
     }
+    
 }
 
 
@@ -87,4 +92,11 @@ char objPos::getSymbolIfPosEqual(const objPos* refPos) const
         return symbol;
     else
         return 0;
+}
+
+void objPos::setHead(int x, int y, char sym)
+{
+    pos->x = x;
+    pos->y = y;
+    symbol = sym;
 }

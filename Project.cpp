@@ -87,7 +87,7 @@ void RunLogic(void)
 void DrawScreen(void)
 {
     MacUILib_clearScreen();
-
+    objPos thisSeg;
     objPosArrayList* playerPos = myPlayer->getPlayerPos();
     int playerSize = playerPos->getSize();
     bool used;
@@ -97,7 +97,7 @@ void DrawScreen(void)
             used = false;
             for (int k = 0; k < playerSize; k++)
             {
-                objPos thisSeg = playerPos->getElement(k);
+                thisSeg = playerPos->getElement(k);
                 if (thisSeg.pos->x == j && thisSeg.pos->y == i)
                 {
                     MacUILib_printf("%c", thisSeg.symbol);

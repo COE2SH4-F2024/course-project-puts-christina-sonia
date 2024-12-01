@@ -9,7 +9,8 @@ Player::Player(GameMechs* thisGMRef)
     myDir = STOP;
     playerPosList = new objPosArrayList();
 
-    objPos headPos(thisGMRef->getBoardSizeX() / 2, thisGMRef->getBoardSizeY() / 2, '@');
+    objPos headPos;
+    headPos.setHead(thisGMRef->getBoardSizeX() / 2, thisGMRef->getBoardSizeY() / 2, '@');
 
     playerPosList->insertHead(headPos);
 }
