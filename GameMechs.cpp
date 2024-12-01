@@ -1,6 +1,7 @@
 #include "GameMechs.h"
 #include "MacUILib.h"
 
+
 GameMechs::GameMechs()
 {
     input = 0 ;
@@ -36,7 +37,9 @@ bool GameMechs::getExitFlagStatus() const
 
 bool GameMechs::getLoseFlagStatus() const
 {
+    
     return loseFlag;
+
 }
 
 void GameMechs :: collectAsyncInput()
@@ -58,10 +61,11 @@ int GameMechs::getScore() const
     return score;
 }
 
-void GameMechs::incrementScore()
+void GameMechs::incrementScore(const objPosArrayList& list) // added argument
 {
-    int increment = 1;
-    score += increment;
+    score = list.getSize() - 1 ;
+    // int increment = 1;
+    // score += increment;
 }
 
 int GameMechs::getBoardSizeX() const
@@ -82,6 +86,7 @@ void GameMechs::setExitTrue()
 
 void GameMechs::setLoseFlag()
 {
+
     loseFlag = true;
 }
 

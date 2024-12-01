@@ -23,7 +23,8 @@ class Player
 
         objPosArrayList* getPlayerPos() const; // Upgrade this in iteration 3. Return reference to list      
         void updatePlayerDir();
-        void movePlayer(Food myfood);
+        void movePlayer(Food& myfood, GameMechs& gm); // added gamemechs count
+        bool checkSelfCollision();
 
 
         // More methods to be added here

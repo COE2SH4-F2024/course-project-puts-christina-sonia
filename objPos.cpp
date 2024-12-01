@@ -38,7 +38,6 @@ objPos::objPos(const objPos &a)
 //copy assignment operator
 objPos& objPos::operator=(const objPos &a)
 {
-    cout << "Copy assignment operator called\n";
     if (this != &a) //including this decreases the memory required for your data
     {
         this->symbol = a.symbol;

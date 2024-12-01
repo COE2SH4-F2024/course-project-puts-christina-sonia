@@ -8,7 +8,7 @@
 
 using namespace std;
 
-#define DELAY_CONST 500000 // originally 100000
+#define DELAY_CONST 200000 // originally 100000
 
 
 Player *myPlayer; 
@@ -76,10 +76,10 @@ void RunLogic(void)
 
     myPlayer ->updatePlayerDir();
 
-    myGM->incrementScore();
+    //myGM->getScore(); // used to be incrementScore
     myGM->clearInput();
     //call Food function generation here? (initialize?)
-    myPlayer->movePlayer(*myFood); // HI SONIA: dereference myFood was the fix. Please verify!
+    myPlayer->movePlayer(*myFood, *myGM); // HI SONIA: dereference myFood was the fix. Please verify!
     //myPlayer->moveList();
     
 }
@@ -129,6 +129,9 @@ void DrawScreen(void)
     }
 
     MacUILib_printf("Current pos is x: %d, y: %d\n\n", myPlayer->getPlayerPos()->getHeadElement().pos->x, myPlayer->getPlayerPos()->getHeadElement().pos->y);
+    MacUILib_printf("Score: %d \n", myGM->getScore());
+
+
 }
 
 void LoopDelay(void)
@@ -140,6 +143,12 @@ void LoopDelay(void)
 void CleanUp(void)
 {
     MacUILib_clearScreen(); 
+
+    if (myGM->getLoseFlagStatus() == true)
+    {
+        MacUILib_printf("Game Over, self-collison :(");
+        
+    }
 
     delete myPlayer;
     delete myGM; 
