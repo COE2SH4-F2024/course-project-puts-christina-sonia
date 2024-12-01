@@ -94,3 +94,10 @@ char objPos::getSymbolIfPosEqual(const objPos* refPos) const
     else
         return 0;
 }
+
+void objPos::setHead(int x, int y, char sym)
+{
+    pos->x = x;
+    pos->y = y;
+    symbol = sym;
+}

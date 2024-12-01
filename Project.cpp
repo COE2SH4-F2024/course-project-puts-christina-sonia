@@ -130,7 +130,7 @@ void DrawScreen(void)
 
     MacUILib_printf("Current pos is x: %d, y: %d\n\n", myPlayer->getPlayerPos()->getHeadElement().pos->x, myPlayer->getPlayerPos()->getHeadElement().pos->y);
     MacUILib_printf("Food position at (%d, %d)\n", myFood->getFoodPos().pos->x, myFood->getFoodPos().pos->y);
-    MacUILib_printf("player pos element: (%d, %d)", thisSeg.pos->x, thisSeg.pos->y);
+    MacUILib_printf("player pos element: (%d, %d)", thisSeg.pos->x, thisSeg.pos->y); //PRINTS IN DIFFERENT POSITIONS EVERY TIME CHECK STATEMENT
 }
 
 void LoopDelay(void)

@@ -20,6 +20,10 @@ objPosArrayList::objPosArrayList()
 
 objPosArrayList::~objPosArrayList()
 {
+    for (int i = 0; i < listSize; i++)
+    {
+        delete aList[i].pos;
+    }
     delete[] aList;
 }
 
@@ -107,7 +111,7 @@ objPos objPosArrayList::getHeadElement() const
     {
         return aList[0];
     }
-    return objPos();
+    //return objPos();
 }
 
 objPos objPosArrayList::getTailElement() const
@@ -116,7 +120,7 @@ objPos objPosArrayList::getTailElement() const
     {
         return aList[listSize-1];
     }
-    return objPos();
+    //return objPos();
     
     
 }
@@ -127,7 +131,7 @@ objPos objPosArrayList::getElement(int index) const
     {
         return aList[index];
     }
-    return objPos(); //if index is out of bounds just return empty object
+    //return objPos(); //if index is out of bounds just return empty object
 }
 
 void objPosArrayList::setHeadPosX(int newPosX)
