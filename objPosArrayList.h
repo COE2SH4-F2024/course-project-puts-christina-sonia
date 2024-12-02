@@ -24,9 +24,6 @@ class objPosArrayList
 
         void setHeadPosX(int newPosX);
         void setHeadPosY(int newPosY);
-        void setPosX(int index, int newPosX);
-        void setPosY(int index, int newPosY);
-
         
         objPos getHeadElement() const;
         objPos getTailElement() const;

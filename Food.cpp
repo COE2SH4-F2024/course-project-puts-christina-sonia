@@ -22,7 +22,9 @@ Food :: Food(const Food &other){
 } 
 
 Food& Food :: operator=(const Food &other){
+    
     if (this != &other){
+        delete foodBucket;
         foodBucket = new objPosArrayList(*other.foodBucket);
     }
 
@@ -43,7 +45,7 @@ Food :: Food(int size)
     // the remaining will be default food
 
     for (int j=2; j<size; j++){
-        foodBucket->insertTail(objPos(3,4,'O'));
+        foodBucket->insertTail(objPos(3,4,basicFood));
     }
 
 

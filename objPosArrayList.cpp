@@ -109,16 +109,6 @@ void objPosArrayList::setHeadPosY(int newPosY)
     aList[0].pos->y = newPosY;
 }
 
-void objPosArrayList::setPosX(int index, int newPosX)
-{
-    this->aList[index].pos->x = newPosX;
-}
-
-void objPosArrayList::setPosY(int index, int newPosY)
-{
-    this->aList[index].pos->y = newPosY;
-}
-
 void objPosArrayList::setElement(objPos value, int index){
     if(index <listSize){
         aList[index] = value;

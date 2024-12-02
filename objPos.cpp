@@ -38,8 +38,10 @@ objPos::objPos(const objPos &a)
 //copy assignment operator
 objPos& objPos::operator=(const objPos &a)
 {
+    
     if (this != &a) //including this decreases the memory required for your data
     {
+        delete pos;
         this->symbol = a.symbol;
         this->pos = new Pos{a.pos->x, a.pos->y};
         return *this;
