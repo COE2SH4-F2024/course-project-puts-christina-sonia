@@ -63,9 +63,9 @@ int GameMechs::getScore() const
 
 void GameMechs::incrementScore(const objPosArrayList& list) // added argument
 {
-    score = list.getSize() - 1 ;
-    // int increment = 1;
-    // score += increment;
+    //score = list.getSize() - 1 ;
+    int increment = 1;
+    score += increment;
 }
 
 int GameMechs::getBoardSizeX() const

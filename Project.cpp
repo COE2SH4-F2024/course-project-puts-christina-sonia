@@ -142,7 +142,8 @@ void DrawScreen(void)
         }
         MacUILib_printf("\n");
     }
-    MacUILib_printf("Score: %d \n", myGM->getScore());
+    MacUILib_printf("O = 1 point, S = 2 points, $ = 3 points \n");
+    MacUILib_printf("Score: %d \n", myGM->getScore()); 
 
 }
 
