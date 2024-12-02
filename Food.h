@@ -13,7 +13,8 @@ using namespace std;
 class Food
 {
     private:
-        objPos foodPos;
+        //objPos foodPos;
+        objPosArrayList* foodBucket;
     
     public:
         Food(); // default constructors
@@ -24,7 +25,9 @@ class Food
 
 
         void generateFood(objPosArrayList& list, int x_size, int y_size);
-        objPos getFoodPos() const;
+        objPos getFoodPos(int index) const;
+        int bucketSize() const;
+        Food(int size);
 
 
 };

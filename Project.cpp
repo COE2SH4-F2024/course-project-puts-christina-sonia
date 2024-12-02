@@ -55,7 +55,7 @@ void Initialize(void)
 
     myGM = new GameMechs();
     myPlayer = new Player(myGM);
-    myFood = new Food();
+    myFood = new Food(3);
 
     boardX = myGM->getBoardSizeX();
     boardY = myGM->getBoardSizeY();
@@ -90,7 +90,8 @@ void DrawScreen(void)
 
     objPosArrayList* playerPos = myPlayer->getPlayerPos();
     int playerSize = playerPos->getSize();
-    bool used;
+    bool used, print = false;
+    objPos temp;
 
     for (int i = 0; i < boardY; i++){
         for (int j = 0; j < boardX; j++){  //COLUMNS = 20
@@ -111,26 +112,37 @@ void DrawScreen(void)
 
             if (used == false)
             {
-                if (j == 0 || j == (boardX - 1) || i == 0 || i == (boardY - 1)){ //print the '#' symbol when i = 0 or i = 9 and j = 0 or j = 19 to establish the static frame
-                MacUILib_printf("%c", '#');
+
+                for (int s=0; s<myFood->bucketSize(); s++){
+                    temp.setObjPos(myFood->getFoodPos(s));
+                    if (temp.pos->x == j && temp.pos->y == i){
+                         MacUILib_printf("%c", temp.symbol);
+                         used = true;
+                    }
                 }
+            }
+
+            if (used == false)
+            {
+                 if (j == 0 || j == (boardX - 1) || i == 0 || i == (boardY - 1)){ //print the '#' symbol when i = 0 or i = 9 and j = 0 or j = 19 to establish the static frame
+                    MacUILib_printf("%c", '#');
+                    }
+                else{
+                        MacUILib_printf(" ");
+                    }
+            }
+
+            used = true;
+               
+            
             // else if (playerPos.pos->x == j && myPlayer->getPlayerPos().pos->y == i){
             //     MacUILib_printf("%c", myPlayer->getPlayerPos().symbol); //from myPlayer pointer object, invoke getPlayerPos() member function and retrieve symbol
             // } 
-                else if (myFood->getFoodPos().pos->x == j && myFood->getFoodPos().pos->y == i){
-                    MacUILib_printf("%c", myFood->getFoodPos().symbol);
-                }           
-                else{
-                    MacUILib_printf(" ");
-                }
-            }
+            
         }
         MacUILib_printf("\n");
     }
-
-    MacUILib_printf("Current pos is x: %d, y: %d\n\n", myPlayer->getPlayerPos()->getHeadElement().pos->x, myPlayer->getPlayerPos()->getHeadElement().pos->y);
     MacUILib_printf("Score: %d \n", myGM->getScore());
-
 
 }
 

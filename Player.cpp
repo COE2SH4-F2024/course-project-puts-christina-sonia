@@ -85,7 +85,7 @@ bool Player::checkSelfCollision()
 void Player::movePlayer(Food& myfood, GameMechs& gm) // added gamemechs count
 {
 
-
+    objPos food;
     objPos nextPosition(playerPosList ->getHeadElement().pos->x, playerPosList->getHeadElement().pos->y,'O');
     switch(myDir)
     {
@@ -103,22 +103,77 @@ void Player::movePlayer(Food& myfood, GameMechs& gm) // added gamemechs count
             break;
     }
 
-    playerPosList ->insertHead(nextPosition.getObjPos());
+    //playerPosList ->insertHead(nextPosition.getObjPos());
+
 
     if (checkSelfCollision() == true){
         gm.setLoseFlag();
         gm.setExitTrue();
     }
 
+    bool foodConsumed = false;
+
     // if overlapped, food is consumed (do not remove snake and take repspective actions tp increase tail)
-    if (playerPosList->getHeadElement().pos->x == myfood.getFoodPos().pos->x && playerPosList->getHeadElement().pos->y == myfood.getFoodPos().pos->y) //nextPosition.isPosEqual(myfood->get) == 1
+     for (int i=0; i<myfood.bucketSize(); i++)
     {
-        myfood.generateFood(*playerPosList, 18, 8); // CHANGE BOARD SIZE
-        gm.incrementScore(*playerPosList); // added this 
+        objPos nextPos = nextPosition.getObjPos();
+        food = myfood.getFoodPos(i);
+        if (nextPos.isPosEqual(&food)){
+            foodConsumed = true;
+            if (food.symbol == 'O')
+            {
+                playerPosList ->insertHead(nextPosition.getObjPos());
+                gm.incrementScore(*playerPosList);
+                myfood.generateFood(*playerPosList, 18, 8);
+            }
+        
+            else if(food.symbol == 'S')
+            {
+                playerPosList ->insertHead(nextPosition.getObjPos());
+                gm.incrementScore(*playerPosList); // increment score twice
+                gm.incrementScore(*playerPosList);
+                myfood.generateFood(*playerPosList, 18, 8);
+            }
+            else if(food.symbol == '$')
+            {
+                playerPosList ->insertHead(nextPosition.getObjPos());
+                gm.incrementScore(*playerPosList); // increment score by three
+                gm.incrementScore(*playerPosList); // 
+                gm.incrementScore(*playerPosList);
+                myfood.generateFood(*playerPosList, 18, 8);
+            }
+        }
     }
-    else
-    {
-        playerPosList->removeTail();
+    // for (int i=0; i<myfood.bucketSize(); i++)
+    // {
+    //     food = myfood.getFoodPos(i);
+
+    //     if (nextPosition.isPosEqual(&food)){
+    //         foodConsumed = true;
+    //         playerPosList ->insertHead(nextPosition.getObjPos());
+
+    //         switch (food.symbol){
+    //             case 'O':
+    //                 gm.incrementScore(*playerPosList);
+    //                 break;
+    //             case 'S':
+    //                 gm.incrementScore(*playerPosList);
+    //                 gm.incrementScore(*playerPosList);
+    //                 break;
+    //             case '$':
+    //                 gm.incrementScore(*playerPosList);
+    //                 gm.incrementScore(*playerPosList);
+    //                 gm.incrementScore(*playerPosList);
+    //                 break;
+    //         }
+    //         myfood.generateFood(*playerPosList, 18, 8);
+    //         break;
+    //     }
+    // }
+
+    if(!foodConsumed){
+        playerPosList ->insertHead(nextPosition.getObjPos());
+        playerPosList ->removeTail();
     }
 
     //iter3: feature 2, insert tmp objpos to head of list, check if new temp objpos overlaps the food pos (get from game mechs class)
@@ -130,7 +185,6 @@ void Player::movePlayer(Food& myfood, GameMechs& gm) // added gamemechs count
 
     int playerX = playerPosList->getHeadElement().pos->x;
     int playerY = playerPosList->getHeadElement().pos->y;
-    bool wrapAround = false;
 
     if (playerX < 1) //wraparound logic
     {
@@ -139,17 +193,14 @@ void Player::movePlayer(Food& myfood, GameMechs& gm) // added gamemechs count
     else if (playerX > 18)
     {
         playerPosList->setHeadPosX(1);
-        wrapAround = true;
     }
     if (playerY < 1)
     {
         playerPosList->setHeadPosY(mainGameMechsRef->getBoardSizeY() - 2);
-        wrapAround = true;
     }
     else if (playerY > 8) //dont hard code: fix!
     {
         playerPosList->setHeadPosY(1);
-        wrapAround = true;
     }   
     
 
