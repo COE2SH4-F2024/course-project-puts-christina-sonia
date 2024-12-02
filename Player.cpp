@@ -1,5 +1,4 @@
 #include "Player.h"
-#include "MacUILib.h"
 #include "GameMechs.h" 
 #include "Food.h"
 
@@ -175,7 +174,7 @@ void Player::movePlayer(Food& myfood, GameMechs& gm)
     {
         playerPosList->setHeadPosY(mainGameMechsRef->getBoardSizeY() - 2);
     }
-    else if (playerY > yBound) //dont hard code: fix!
+    else if (playerY > yBound) 
     {
         playerPosList->setHeadPosY(1);
     }   

@@ -1,5 +1,4 @@
 #include "Food.h"
-#include "MacUILib.h"
 
 
 Food :: Food()
