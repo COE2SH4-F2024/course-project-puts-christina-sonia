@@ -24,10 +24,10 @@ GameMechs::GameMechs(int boardX, int boardY)
     boardSizeY = boardY;
 }
 
-// do you need a destructor?
+
 GameMechs::~GameMechs()
 {
-    // at this moment no, because we dont have a heap member
+    // empty since we dont have a heap member
 }
 
 bool GameMechs::getExitFlagStatus() const
@@ -61,9 +61,13 @@ int GameMechs::getScore() const
     return score;
 }
 
-void GameMechs::incrementScore(const objPosArrayList& list) // added argument
+void GameMechs::incrementScore(const objPosArrayList& list) 
 {
+    //if not doing bonus - the below comment requires the argument
+    //to be passed into the function
     //score = list.getSize() - 1 ;
+
+    //bonus implementation
     int increment = 1;
     score += increment;
 }

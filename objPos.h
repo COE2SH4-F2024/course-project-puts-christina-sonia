@@ -1,7 +1,6 @@
 #ifndef OBJPOS_H
 #define OBJPOS_H
 
-// Not really a C++ thing
 typedef struct 
 {
     int x;
@@ -14,12 +13,12 @@ class objPos
         Pos* pos;        
         char symbol;
 
-        objPos();
+        objPos(); // default constructor
         objPos(int xPos, int yPos, char sym);
         
         ~objPos(); //destructor
         objPos(const objPos &a); // copy constructor
-        objPos& operator=(const objPos &a);
+        objPos& operator=(const objPos &a); // copy assignment operator
 
         void setObjPos(objPos o);        
         void setObjPos(int xPos, int yPos, char sym);  

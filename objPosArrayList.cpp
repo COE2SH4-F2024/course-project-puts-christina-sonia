@@ -1,8 +1,6 @@
 #include "objPosArrayList.h"
 #include "objPos.h"
 
-// Check lecture contents on general purpose array list construction, 
-// and modify it to support objPos array list construction.
 
 objPosArrayList::objPosArrayList()
 {
@@ -43,7 +41,6 @@ void objPosArrayList::insertHead(objPos thisPos)
     aList[0].symbol = '@';
     aList[0].pos->x = thisPos.pos->x;
     aList[0].pos->y = thisPos.pos->y;
-    
     
 }
 
@@ -114,13 +111,11 @@ void objPosArrayList::setHeadPosY(int newPosY)
 
 void objPosArrayList::setPosX(int index, int newPosX)
 {
-    //aList[index].pos->x = newPosX;
     this->aList[index].pos->x = newPosX;
 }
 
 void objPosArrayList::setPosY(int index, int newPosY)
 {
-    //aList[index].pos->y = newPosY;
     this->aList[index].pos->y = newPosY;
 }
 
